@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "paper_title": "Adaptive Multi-Modal AI Framework for Hyperlocal Weather Forecasting in Distributed Solar Rooftop Systems",
+    "course": "DBMS BCSE302L - Digital Assignment 1 (DA-1)",
+    "authors": [
+      "Revanth P. A. (24BCE1730)",
+      "Siripuram Srimannath (24BCE5034)"
+    ],
+    "resolution": "15-minute intervals"
+  },
+  "plant_1": {
+    "plant_id": 4135001,
+    "name": "Plant 1 (Pune Region)",
+    "coordinates": {
+      "lat": 18.5204,
+      "lon": 73.8567
+    },
+    "total_records": 3264,
+    "start_time": "2020-05-15 00:00:00",
+    "end_time": "2020-06-17 23:45:00",
+    "anomalies_flagged": 33,
+    "columns": [
+      "timestamp",
+      "total_dc_power",
+      "mean_dc_power",
+      "total_ac_power",
+      "mean_ac_power",
+      "total_daily_yield",
+      "inverter_count",
+      "sensor_ambient_temp",
+      "sensor_module_temp",
+      "sensor_irradiation",
+      "plant_id",
+      "nasa_ghi",
+      "nasa_cloud_amt",
+      "nasa_ambient_temp",
+      "nasa_rh",
+      "nasa_wind_speed",
+      "nasa_pressure",
+      "nasa_clearness_index",
+      "is_anomaly",
+      "anomaly_score"
+    ],
+    "missing_values": {
+      "timestamp": 0,
+      "total_dc_power": 0,
+      "mean_dc_power": 0,
+      "total_ac_power": 0,
+      "mean_ac_power": 0,
+      "total_daily_yield": 0,
+      "inverter_count": 0,
+      "sensor_ambient_temp": 0,
+      "sensor_module_temp": 0,
+      "sensor_irradiation": 0,
+      "plant_id": 0,
+      "nasa_ghi": 0,
+      "nasa_cloud_amt": 0,
+      "nasa_ambient_temp": 0,
+      "nasa_rh": 0,
+      "nasa_wind_speed": 0,
+      "nasa_pressure": 0,
+      "nasa_clearness_index": 0,
+      "is_anomaly": 0,
+      "anomaly_score": 0
+    }
+  },
+  "plant_2": {
+    "plant_id": 4136001,
+    "name": "Plant 2 (Rooftop Site B - Pune Region)",
+    "coordinates": {
+      "lat": 18.5204,
+      "lon": 73.8567
+    },
+    "total_records": 3264,
+    "start_time": "2020-05-15 00:00:00",
+    "end_time": "2020-06-17 23:45:00",
+    "anomalies_flagged": 33,
+    "columns": [
+      "timestamp",
+      "total_dc_power",
+      "mean_dc_power",
+      "total_ac_power",
+      "mean_ac_power",
+      "total_daily_yield",
+      "inverter_count",
+      "sensor_ambient_temp",
+      "sensor_module_temp",
+      "sensor_irradiation",
+      "plant_id",
+      "nasa_ghi",
+      "nasa_cloud_amt",
+      "nasa_ambient_temp",
+      "nasa_rh",
+      "nasa_wind_speed",
+      "nasa_pressure",
+      "nasa_clearness_index",
+      "is_anomaly",
+      "anomaly_score"
+    ],
+    "missing_values": {
+      "timestamp": 0,
+      "total_dc_power": 0,
+      "mean_dc_power": 0,
+      "total_ac_power": 0,
+      "mean_ac_power": 0,
+      "total_daily_yield": 0,
+      "inverter_count": 0,
+      "sensor_ambient_temp": 0,
+      "sensor_module_temp": 0,
+      "sensor_irradiation": 0,
+      "plant_id": 0,
+      "nasa_ghi": 0,
+      "nasa_cloud_amt": 0,
+      "nasa_ambient_temp": 0,
+      "nasa_rh": 0,
+      "nasa_wind_speed": 0,
+      "nasa_pressure": 0,
+      "nasa_clearness_index": 0,
+      "is_anomaly": 0,
+      "anomaly_score": 0
+    }
+  },
+  "combined": {
+    "total_records": 6528,
+    "total_columns": 20
+  }
+}
