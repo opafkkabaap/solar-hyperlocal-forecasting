@@ -3,8 +3,9 @@
   "source_file": "plant2_multimodal_15min.csv",
   "lookback_window": 96,
   "lookback_hours": 24.0,
-  "forecast_horizon": 1,
-  "forecast_minutes": 15,
+  "forecast_horizon": 4,
+  "forecast_minutes": 60,
+  "num_features": 13,
   "feature_columns": [
     "total_ac_power",
     "sensor_irradiation",
@@ -18,38 +19,36 @@
     "nasa_pressure",
     "nasa_clearness_index",
     "hour_sin",
-    "hour_cos",
-    "day_sin",
-    "day_cos"
+    "hour_cos"
   ],
   "target_column": "total_ac_power",
   "tensor_shapes": {
     "X_train": [
-      2208,
+      2205,
       96,
-      15
+      13
     ],
     "y_train": [
-      2208,
-      1
+      2205,
+      4
     ],
     "X_val": [
-      480,
+      477,
       96,
-      15
+      13
     ],
     "y_val": [
-      480,
-      1
+      477,
+      4
     ],
     "X_test": [
-      480,
+      477,
       96,
-      15
+      13
     ],
     "y_test": [
-      480,
-      1
+      477,
+      4
     ]
   },
   "chronological_partitions": {

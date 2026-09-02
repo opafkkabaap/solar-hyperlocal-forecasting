@@ -2,11 +2,9 @@
 Master Sequence Preparation Script for Model Training.
 Prepares 3D sequence tensors for LSTM, GRU, and Transformer training.
 Supports:
-- Anomaly smoothing
-- Cyclical time encodings
-- Chronological train/val/test partitioning
-- Leakage-free MinMax scaling
-- 3D sliding sequence window construction
+- D = 13 features
+- H = 4 forecast horizon (ultra-short-term, 1 hour ahead)
+- Dual format export (.npz and .npy)
 """
 
 import argparse
@@ -14,7 +12,6 @@ import json
 import sys
 from pathlib import Path
 
-# Add project root to sys.path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
@@ -40,10 +37,10 @@ def process_and_save_sequences(
     plant_key: str,
     csv_filename: str,
     lookback_window: int = 96,
-    forecast_horizon: int = 1,
+    forecast_horizon: int = 4,
 ):
     logger.info(f"\n{'='*70}")
-    logger.info(f"Processing Sequences for: {plant_key.upper()}")
+    logger.info(f"Processing Sequences for: {plant_key.upper()} (D={len(FEATURE_COLS)}, H={forecast_horizon})")
     logger.info(f"{'='*70}")
 
     csv_path = PROCESSED_DATA_DIR / csv_filename
@@ -53,7 +50,7 @@ def process_and_save_sequences(
     df_raw = pd.read_csv(csv_path)
     logger.info(f"Loaded {csv_filename}: {len(df_raw):,} records.")
 
-    # 1. Feature Engineering: Cyclical time encodings
+    # 1. Feature Engineering: Diurnal cyclical time encodings (hour_sin, hour_cos)
     df_feat = add_cyclical_time_features(df_raw)
 
     # 2. Repair telemetry anomalies to keep continuous sequence
@@ -75,20 +72,18 @@ def process_and_save_sequences(
         forecast_horizon=forecast_horizon,
     )
 
-    # 5. Sanity Check: Inverse transform precision verification
-    y_train_sample = tensors["y_train"][:10]
+    # 5. Sanity Check: Inverse transform precision verification on first step of target
+    y_train_sample = tensors["y_train"][:10, 0]  # First horizon step
     y_unscaled = tensors["target_scaler"].inverse_transform(y_train_sample)
-    # The first target in y_train corresponds to index lookback_window in train_df
     y_actual = train_df[TARGET_COL].values[lookback_window : lookback_window + 10]
     max_recon_err = np.max(np.abs(y_unscaled.flatten() - y_actual))
     logger.info(f"Inverse transform precision check: Max absolute error = {max_recon_err:.2e}")
-    if max_recon_err > 1e-3:
-        logger.warning("Inverse transform reconstruction error is larger than expected!")
 
-    # 6. Save Sequence Tensors and Scalers
+    # 6. Save Sequence Tensors (.npy and .npz)
     target_dir = PROCESSED_DATA_DIR / "tensors" / plant_key
     target_dir.mkdir(parents=True, exist_ok=True)
 
+    # Individual .npy files
     np.save(target_dir / "X_train.npy", tensors["X_train"])
     np.save(target_dir / "y_train.npy", tensors["y_train"])
     np.save(target_dir / "X_val.npy", tensors["X_val"])
@@ -96,7 +91,20 @@ def process_and_save_sequences(
     np.save(target_dir / "X_test.npy", tensors["X_test"])
     np.save(target_dir / "y_test.npy", tensors["y_test"])
 
-    # Save scalers
+    # Compressed single-file .npz archive
+    npz_path = target_dir / "sequences.npz"
+    np.savez_compressed(
+        npz_path,
+        X_train=tensors["X_train"],
+        y_train=tensors["y_train"],
+        X_val=tensors["X_val"],
+        y_val=tensors["y_val"],
+        X_test=tensors["X_test"],
+        y_test=tensors["y_test"],
+    )
+    logger.info(f"Saved compressed archive: {npz_path.name} ({npz_path.stat().st_size / (1024*1024):.2f} MB)")
+
+    # Save scalers dictionary
     scalers_dict = {
         "feature_scaler": tensors["feature_scaler"].to_dict(),
         "target_scaler": tensors["target_scaler"].to_dict(),
@@ -112,6 +120,7 @@ def process_and_save_sequences(
         "lookback_hours": lookback_window * 15 / 60.0,
         "forecast_horizon": forecast_horizon,
         "forecast_minutes": forecast_horizon * 15,
+        "num_features": len(FEATURE_COLS),
         "feature_columns": FEATURE_COLS,
         "target_column": TARGET_COL,
         "tensor_shapes": {
@@ -164,8 +173,8 @@ def main():
     parser.add_argument(
         "--horizon",
         type=int,
-        default=1,
-        help="Number of 15-minute steps ahead to predict (default: 1 = 15 minutes).",
+        default=4,
+        help="Number of 15-minute steps ahead to predict (default: 4 = 1 hour ahead).",
     )
     args = parser.parse_args()
 

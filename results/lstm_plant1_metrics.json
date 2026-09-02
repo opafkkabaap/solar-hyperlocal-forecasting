@@ -1,0 +1,50 @@
+{
+  "model": "SolarLSTM",
+  "plant": "plant1",
+  "parameters": {
+    "input_dim": 13,
+    "hidden_dim": 64,
+    "num_layers": 2,
+    "output_dim": 4,
+    "dropout": 0.2,
+    "epochs_trained": 40,
+    "best_val_loss": 0.006390389501882534,
+    "total_params": 55716
+  },
+  "metrics": {
+    "overall": {
+      "rmse_kw": 2542.684,
+      "mae_kw": 1377.941,
+      "mape_pct": 31.0,
+      "r2_score": 0.9034,
+      "threshold_kw": 278.95,
+      "y_max_kw": 27895.04
+    },
+    "per_step_horizon": {
+      "t+15min": {
+        "rmse_kw": 2283.867,
+        "mae_kw": 1232.838,
+        "mape_pct": 27.72,
+        "r2_score": 0.9221
+      },
+      "t+30min": {
+        "rmse_kw": 2488.265,
+        "mae_kw": 1325.159,
+        "mape_pct": 29.56,
+        "r2_score": 0.9075
+      },
+      "t+45min": {
+        "rmse_kw": 2623.547,
+        "mae_kw": 1430.873,
+        "mape_pct": 32.61,
+        "r2_score": 0.8972
+      },
+      "t+60min": {
+        "rmse_kw": 2751.446,
+        "mae_kw": 1522.892,
+        "mape_pct": 34.1,
+        "r2_score": 0.8869
+      }
+    }
+  }
+}
