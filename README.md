@@ -7,7 +7,9 @@
 ---
 
 ## 1. Overview
-This dataset integrates primary on-site solar photovoltaic generation and sensor telemetry with secondary hyperlocal meteorological feeds from the NASA POWER REST API. The unified multi-modal time series enables training and direct comparison of **LSTM**, **GRU**, and **Transformer** sequence architectures for short-term solar power output forecasting.
+This repository implements the multi-modal ingestion, temporal harmonization, and deep learning forecasting framework for distributed solar rooftop systems.
+- 📈 **[View Empirical Model Benchmarks & Figures (RESULTS.md)](RESULTS.md)**: Full performance tables, loss curves, and 5-day multi-step forecast comparisons for SolarLSTM.
+- 🚀 Complete dataset, preprocessing scripts, and PyTorch training pipelines are fully reproducible.
 
 ---
 
