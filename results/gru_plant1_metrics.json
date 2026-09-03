@@ -1,0 +1,50 @@
+{
+  "model": "SolarGRU",
+  "plant": "plant1",
+  "parameters": {
+    "input_dim": 13,
+    "hidden_dim": 64,
+    "num_layers": 2,
+    "output_dim": 4,
+    "dropout": 0.2,
+    "epochs_trained": 26,
+    "best_val_loss": 0.006055044977358529,
+    "total_params": 42340
+  },
+  "metrics": {
+    "overall": {
+      "rmse_kw": 2598.91,
+      "mae_kw": 1433.307,
+      "mape_pct": 30.53,
+      "r2_score": 0.8991,
+      "threshold_kw": 278.95,
+      "y_max_kw": 27895.04
+    },
+    "per_step_horizon": {
+      "t+15min": {
+        "rmse_kw": 2286.975,
+        "mae_kw": 1253.541,
+        "mape_pct": 25.44,
+        "r2_score": 0.9219
+      },
+      "t+30min": {
+        "rmse_kw": 2542.153,
+        "mae_kw": 1400.309,
+        "mape_pct": 29.53,
+        "r2_score": 0.9034
+      },
+      "t+45min": {
+        "rmse_kw": 2692.596,
+        "mae_kw": 1474.741,
+        "mape_pct": 32.45,
+        "r2_score": 0.8917
+      },
+      "t+60min": {
+        "rmse_kw": 2841.56,
+        "mae_kw": 1604.637,
+        "mape_pct": 34.7,
+        "r2_score": 0.8794
+      }
+    }
+  }
+}
