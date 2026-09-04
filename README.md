@@ -8,7 +8,8 @@
 
 ## 1. Overview
 This repository implements the multi-modal ingestion, temporal harmonization, and deep learning forecasting framework for distributed solar rooftop systems.
-- 📈 **[View Empirical Model Benchmarks & Figures (RESULTS.md)](RESULTS.md)**: Full performance tables, loss curves, and 5-day multi-step forecast comparisons for SolarLSTM.
+- 📑 **[Read Comprehensive Project Report (REPORT.md)](REPORT.md)**: Full academic report covering system architecture, database schema, data engineering, model formulations, and physics-informed PV equations.
+- 📈 **[View Empirical Model Benchmarks & Figures (RESULTS.md)](RESULTS.md)**: Side-by-side performance tables (LSTM vs. GRU), loss curves, and 5-day multi-step forecast comparisons.
 - 🚀 Complete dataset, preprocessing scripts, and PyTorch training pipelines are fully reproducible.
 
 ---
