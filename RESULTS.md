@@ -67,13 +67,3 @@ Evaluated on the unseen test partition (June 13 to June 17, 2020 — 477 test se
 | ![LSTM Forecast](results/figures/lstm_plant1_forecast.png) | ![GRU Forecast](results/figures/gru_plant1_forecast.png) |
 
 ---
-
-## 5. Artifact Checklist
-- [x] LSTM Checkpoint: `models/lstm_plant1_best.pth`
-- [x] GRU Checkpoint: `models/gru_plant1_best.pth`
-- [x] LSTM Metrics JSON: `results/lstm_plant1_metrics.json`
-- [x] GRU Metrics JSON: `results/gru_plant1_metrics.json`
-- [x] LSTM Visualizations: `results/figures/lstm_plant1_loss.png`, `results/figures/lstm_plant1_forecast.png`
-- [x] GRU Visualizations: `results/figures/gru_plant1_loss.png`, `results/figures/gru_plant1_forecast.png`
-- [x] Python Code: `model_lstm.py`, `model_gru.py`, `train_lstm.py`, `train_gru.py`, `train_utils.py`
-- [x] Full Academic Report: `REPORT.md`
