@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Large datasets / raw archives
+*.zip
+*.tar.gz
+
+# Environment
+.venv/
+env/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
