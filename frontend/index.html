@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Helios · Solar Weather Forecasting & Optimal Energy Output</title>
   <meta name="description" content="Physics-informed machine learning and predictive energy optimization for multi-campus solar PV installations based on the UniSolar dataset.">
+  <!-- Fallback stack ensures 100% offline functionality -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,85 +16,82 @@
   <header class="app-header">
     <div class="header-container">
       <div class="brand">
-        <div class="brand-glyph">
+        <div class="brand-glyph" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="4"></circle>
             <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
           </svg>
         </div>
         <div>
-          <h1 class="brand-title">HELIOS · UniSolar</h1>
-          <p class="brand-subtitle">Physics-Augmented Forecasting & Optimal Energy Engine</p>
+          <h1 class="brand-title">HELIOS · UniSolar Intelligence</h1>
+          <p class="brand-subtitle">Physics-Augmented Forecasting & Optimal Energy Engine · 1-Hour-Ahead Horizon</p>
         </div>
       </div>
 
       <div class="header-telemetry">
         <div class="telemetry-badge">
           <span class="status-dot"></span>
-          <span class="badge-label">Dataset:</span>
-          <strong class="badge-val">UniSolar (5 Campuses · 42 Sites)</strong>
+          <span class="badge-label">Evaluated Site:</span>
+          <strong class="badge-val">Site 14 · Bundoora Main (66.0 kWp)</strong>
         </div>
         <div class="telemetry-badge">
           <span class="badge-label">Timezone:</span>
           <strong class="badge-val">Australia/Melbourne (AEST/AEDT)</strong>
         </div>
-        <div class="site-selector-wrapper">
-          <label for="site-select">Selected Site:</label>
-          <select id="site-select" class="site-select">
-            <option value="14" selected>Site 14 · Bundoora Main (66.0 kWp Trina · 2x SE27.6K)</option>
-            <option value="27">Site 27 · Bundoora Solar Farm (539.8 kWp SunPower · 5x ABB)</option>
-            <option value="1">Site 1 · Wodonga Campus (Albury-Wodonga)</option>
-            <option value="6">Site 6 · Bendigo Campus</option>
-            <option value="41">Site 41 · Mildura Campus</option>
-            <option value="42">Site 42 · Shepparton Campus</option>
-          </select>
-        </div>
       </div>
     </div>
 
-    <!-- Main Navigation Tabs -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <button class="nav-tab active" data-tab="overview">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-          Executive Overview
+    <!-- Main Navigation Tabs with ARIA accessibility -->
+    <nav class="nav-bar" aria-label="Main Navigation">
+      <div class="nav-container" role="tablist">
+        <button class="nav-tab active" role="tab" aria-selected="true" aria-controls="tab-overview" id="tabbtn-overview" data-tab="overview">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+          Overview
         </button>
-        <button class="nav-tab" data-tab="architecture">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-architecture" id="tabbtn-architecture" data-tab="architecture">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
           System Architecture
         </button>
-        <button class="nav-tab" data-tab="forecasting">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg>
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-forecasting" id="tabbtn-forecasting" data-tab="forecasting">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg>
           Forecasting Benchmarks
         </button>
-        <button class="nav-tab" data-tab="optimization">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-optimization" id="tabbtn-optimization" data-tab="optimization">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
           Optimal Energy & Losses
         </button>
-        <button class="nav-tab" data-tab="dispatch">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 2h10v8H5V6z" clip-rule="evenodd"></path></svg>
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-dispatch" id="tabbtn-dispatch" data-tab="dispatch">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 2h10v8H5V6z" clip-rule="evenodd"></path></svg>
           Predictive Battery Dispatch
         </button>
-        <button class="nav-tab" data-tab="simulator">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
-          Interactive PV Simulator
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-explorer" id="tabbtn-explorer" data-tab="explorer">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"></path></svg>
+          Data Explorer
+        </button>
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-schema" id="tabbtn-schema" data-tab="schema">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"></path></svg>
+          Database Schema
+        </button>
+        <button class="nav-tab" role="tab" aria-selected="false" aria-controls="tab-simulator" id="tabbtn-simulator" data-tab="simulator">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+          Physics PV Simulator
         </button>
       </div>
     </nav>
   </header>
 
-  <!-- Main Container -->
+  <!-- Main Content Area -->
   <main class="app-main">
     
-    <!-- KPI Summary Bar (Persistent Across Views) -->
-    <section class="kpi-banner">
+    <!-- KPI Summary Bar (Consistent Across Site 14 Evaluation) -->
+    <section class="kpi-banner" aria-label="Key Performance Indicators for Site 14">
       <div class="kpi-card">
         <span class="kpi-tag">Stage 1 · Weather Forecaster</span>
         <div class="kpi-number-group">
           <span class="kpi-value">0.948</span>
           <span class="kpi-unit">R²</span>
         </div>
-        <p class="kpi-sub">GHI RMSE: <strong>70.6 W/m²</strong> (+60.8% skill score)</p>
+        <p class="kpi-sub">GHI RMSE: <strong>70.6 W/m²</strong> (+60.8% vs 24-h persistence baseline)</p>
       </div>
 
       <div class="kpi-card highlight">
@@ -102,16 +100,16 @@
           <span class="kpi-value">0.907</span>
           <span class="kpi-unit">R²</span>
         </div>
-        <p class="kpi-sub">RMSE: <strong>4.69 kWh</strong> · nRMSE: <strong>7.10%</strong> (+51.9% vs base)</p>
+        <p class="kpi-sub">RMSE: <strong>4.69 kWh</strong> · nRMSE: <strong>7.10%</strong> (+51.9% vs 24-h persistence)</p>
       </div>
 
       <div class="kpi-card">
         <span class="kpi-tag">Stage 3 · Optimal Orientation</span>
         <div class="kpi-number-group">
           <span class="kpi-value">20°</span>
-          <span class="kpi-unit">North</span>
+          <span class="kpi-unit">True North</span>
         </div>
-        <p class="kpi-sub">Annual yield gain: <strong>+3.81%</strong> (784 vs 755 kWh/m²)</p>
+        <p class="kpi-sub">Test-window irradiation gain: <strong>+3.81%</strong> (784.0 vs 755.3 kWh/m²)</p>
       </div>
 
       <div class="kpi-card success">
@@ -120,13 +118,14 @@
           <span class="kpi-value">24.1%</span>
           <span class="kpi-unit">Peak Shaved</span>
         </div>
-        <p class="kpi-sub">Peak demand cut: <strong>8.5 kW</strong> · 69.7 kWh clean dispatch</p>
+        <p class="kpi-sub">Peak demand cut: <strong>8.5 kW</strong> · Illustrative simulation with assumed load</p>
       </div>
     </section>
 
     <!-- TAB 1: EXECUTIVE OVERVIEW -->
-    <section id="tab-overview" class="tab-pane active">
-      <div class="grid-two-col">
+    <section id="tab-overview" class="tab-pane active" role="tabpanel" aria-labelledby="tabbtn-overview">
+      <h2>Executive Overview</h2>
+      <div class="grid-two-col mt-4">
         <div class="card">
           <div class="card-header">
             <h3>Project Summary & Mission</h3>
@@ -134,28 +133,34 @@
           </div>
           <div class="card-body">
             <p class="prose">
-              The <strong>Helios Solar Intelligence System</strong> provides high-accuracy weather forecasting, physical PV power prediction, and dispatch optimization for solar installations across Victoria, Australia.
+              The <strong>Helios Solar Intelligence System</strong> provides high-accuracy 1-hour-ahead weather forecasting, physics-informed PV power prediction, and dispatch optimization for solar installations across Victoria, Australia.
             </p>
             <div class="feature-list">
               <div class="feature-item">
-                <div class="feature-icon gold">☀️</div>
+                <div class="feature-icon gold" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </div>
                 <div>
                   <strong>Physics-Informed Architecture</strong>
-                  <p>Fuses astronomical geometry (zenith, elevation, azimuth) and Ineichen clear-sky radiation curves with XGBoost and PyTorch Deep Bi-GRU sequences.</p>
+                  <p>Integrates astronomical solar position (zenith, elevation, azimuth) and Ineichen clear-sky radiation curves with XGBoost and PyTorch Deep Bi-GRU sequential models.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon blue">🌐</div>
+                <div class="feature-icon blue" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg>
+                </div>
                 <div>
                   <strong>Multi-Campus Synchronization</strong>
-                  <p>Harmonizes 5 Victorian campuses (Bundoora, Wodonga, Bendigo, Mildura, Shepparton), converting UTC satellite irradiance to local Eastern Time with exact solar noon alignment.</p>
+                  <p>Harmonizes 5 Victorian campuses (Bundoora, Wodonga, Bendigo, Mildura, Shepparton), converting UTC irradiance records to local Eastern Time to align with generation intervals.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon green">⚡</div>
+                <div class="feature-icon green" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
                 <div>
                   <strong>Actionable Energy Optimization</strong>
-                  <p>Determines optimal panel tilt, attributes thermodynamic losses (cell heating, cloud cover, inverter clipping), and schedules battery storage to minimize peak grid draw.</p>
+                  <p>Determines optimal panel tilt, attributes thermodynamic losses (cell heating, cloud cover, inverter clipping), and schedules battery storage to shave peak grid demand.</p>
                 </div>
               </div>
             </div>
@@ -164,8 +169,8 @@
 
         <div class="card">
           <div class="card-header">
-            <h3>Active Site Telemetry</h3>
-            <span class="chip code">Site 14 Profile</span>
+            <h3>Evaluated Site Profile</h3>
+            <span class="chip code">Site 14 Benchmark</span>
           </div>
           <div class="card-body">
             <div class="spec-grid">
@@ -185,16 +190,18 @@
                 <span class="spec-meta">2x SolarEdge SE27.6K</span>
               </div>
               <div class="spec-box">
-                <span class="spec-label">Evaluation Span</span>
-                <strong class="spec-val">16,267 Hours</strong>
-                <span class="spec-meta">June 2020 – April 2022</span>
+                <span class="spec-label">Dataset Span</span>
+                <strong class="spec-val">16,267 valid hours</strong>
+                <span class="spec-meta">Test: 3,254 hours (Dec 2021–Apr 2022)</span>
               </div>
             </div>
 
             <div class="chart-preview-container">
               <h4>Forecast Envelopes vs. Clear-Sky Limit</h4>
-              <img src="assets/forecast_timeseries.png" alt="Solar Forecast Timeseries" class="img-preview" data-modal="modal-img">
-              <span class="zoom-hint">Click image to inspect high-resolution view</span>
+              <button class="img-preview-btn" data-modal-target="modal-img" data-img-src="assets/forecast_timeseries.png" data-caption="Actual vs. Predicted Solar Energy Generation across Clear and Cloudy Days (Site 14)" aria-label="Enlarge Solar Forecast Timeseries figure">
+                <img src="assets/forecast_timeseries.png" alt="Solar Forecast Timeseries" class="img-preview" width="800" height="400" loading="lazy">
+              </button>
+              <span class="zoom-hint">Click figure to enlarge for inspection</span>
             </div>
           </div>
         </div>
@@ -202,25 +209,26 @@
     </section>
 
     <!-- TAB 2: SYSTEM ARCHITECTURE -->
-    <section id="tab-architecture" class="tab-pane">
-      <div class="card full-width">
+    <section id="tab-architecture" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-architecture">
+      <h2>System Architecture</h2>
+      <div class="card full-width mt-4">
         <div class="card-header">
-          <h3>Physics-Informed Hybrid Pipeline Pipeline Flow</h3>
-          <span class="chip">Data & Feature Journey</span>
+          <h3>Physics-Informed Hybrid Pipeline Flow</h3>
+          <span class="chip">Data & Physics Engineering</span>
         </div>
         <div class="card-body">
           <div class="pipeline-flow-diagram">
             <div class="pipeline-step">
               <div class="step-num">01</div>
               <h4>Ingestion & Timezone Sync</h4>
-              <p>5 Raw CSVs. Irradiance UTC timestamps converted to <code>Australia/Melbourne</code>. 15-min generation resampled to 1-hour total kWh. Night values clamped to zero.</p>
+              <p>5 UniSolar CSVs. UTC irradiance records converted to <code>Australia/Melbourne</code>. 15-min generation resampled to 1-hour total kWh. Night values clamped to zero.</p>
               <div class="tag-row">
                 <span class="micro-tag">UTC→AEST</span>
                 <span class="micro-tag">Active Commissioning Filter</span>
               </div>
             </div>
 
-            <div class="pipeline-connector">➔</div>
+            <div class="pipeline-connector" aria-hidden="true">➔</div>
 
             <div class="pipeline-step">
               <div class="step-num">02</div>
@@ -233,24 +241,25 @@
               </div>
             </div>
 
-            <div class="pipeline-connector">➔</div>
+            <div class="pipeline-connector" aria-hidden="true">➔</div>
 
             <div class="pipeline-step">
               <div class="step-num">03</div>
               <h4>Dual Forecasting Engine</h4>
-              <p>Stage 1: XGBoost GHI & Cloud Forecaster. Stage 2: Physics-Augmented XGBoost Solar Forecaster with hard physical bounds + Bi-GRU baseline.</p>
+              <p>Stage 1: XGBoost GHI & Cloud Forecaster. Stage 2: Physics-Augmented XGBoost Solar Forecaster with hard physical bounds + Bi-GRU benchmark.</p>
               <div class="tag-row">
-                <span class="micro-tag">XGBoost Regressor</span>
+                <span class="micro-tag">1-Hour-Ahead</span>
+                <span class="micro-tag">XGBoost</span>
                 <span class="micro-tag">PyTorch Bi-GRU</span>
               </div>
             </div>
 
-            <div class="pipeline-connector">➔</div>
+            <div class="pipeline-connector" aria-hidden="true">➔</div>
 
             <div class="pipeline-step">
               <div class="step-num">04</div>
               <h4>Energy Optimization</h4>
-              <p>Tilt angle search via Hay-Davies POA transposition. Performance Ratio and thermodynamic loss decomposition. 24h predictive battery dispatch.</p>
+              <p>Tilt angle search via Hay-Davies POA transposition. Clear-sky yield ratio and loss decomposition. Predictive battery dispatch simulation.</p>
               <div class="tag-row">
                 <span class="micro-tag">Optimal Tilt 20°</span>
                 <span class="micro-tag">Peak Shaving</span>
@@ -277,7 +286,7 @@
             <div class="formula-card">
               <h5>Forecast Skill Score</h5>
               <div class="code-math">SS = (1 - RMSE_model / RMSE_persistence) × 100%</div>
-              <p>Evaluates percentage accuracy advantage over standard 24-hour diurnal seasonal persistence.</p>
+              <p>Evaluates percentage accuracy advantage over standard 24-hour diurnal seasonal persistence baseline.</p>
             </div>
           </div>
         </div>
@@ -285,14 +294,18 @@
     </section>
 
     <!-- TAB 3: FORECASTING BENCHMARKS -->
-    <section id="tab-forecasting" class="tab-pane">
-      <div class="grid-two-col">
+    <section id="tab-forecasting" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-forecasting">
+      <h2>Forecasting Benchmarks</h2>
+      <div class="grid-two-col mt-4">
         <div class="card">
           <div class="card-header">
             <h3>Quantitative Model Evaluation</h3>
             <span class="chip">3,254 Test Hours (Chronological Split)</span>
           </div>
           <div class="card-body">
+            <p class="prose mb-3">
+              All models forecast <strong>one-hour-ahead ($t+1$)</strong> generation and weather variables on the unseen test split (Dec 2021 – Apr 2022).
+            </p>
             <div class="table-responsive">
               <table class="data-table">
                 <thead>
@@ -320,7 +333,7 @@
                   <tr>
                     <td>
                       <strong>Deep Learning Bi-GRU</strong>
-                      <span class="table-sub">PyTorch 2-layer sequential model</span>
+                      <span class="table-sub">PyTorch 2-layer sequential model (12 epochs)</span>
                     </td>
                     <td>6.18 kWh</td>
                     <td>2.89 kWh</td>
@@ -344,13 +357,15 @@
             </div>
 
             <div class="callout-note">
-              <strong>Why Physics-Augmented XGBoost Wins:</strong>
-              Injecting clear-sky irradiance and solar zenith directly into gradient boosted trees captures non-linear cloud transitions and hard zero bounds far better than pure recurrent neural nets, training in seconds without requiring GPU clusters.
+              <strong>Model Benchmark Comparison:</strong>
+              Physics-Augmented XGBoost outperformed the Bi-GRU in this setup ($R^2 = 0.907$ vs. $0.838$, nRMSE $7.10\%$ vs. $9.36\%$). Supplying clear-sky trajectories and solar zenith directly enabled gradient boosting to capture non-linear cloud transitions effectively without deep sequence tuning.
             </div>
 
             <div class="chart-embed">
-              <h4>Top Feature Importances (XGBoost)</h4>
-              <img src="assets/feature_importance.png" alt="Feature Importance" class="img-preview" data-modal="modal-img">
+              <h4>Top Feature Importances (XGBoost Solar Model)</h4>
+              <button class="img-preview-btn" data-modal-target="modal-img" data-img-src="assets/feature_importance.png" data-caption="Feature Importance: Theoretical DC power, clear-sky GHI, and GHI lags dominate" aria-label="Enlarge Feature Importance figure">
+                <img src="assets/feature_importance.png" alt="Feature Importance" class="img-preview" width="800" height="450" loading="lazy">
+              </button>
             </div>
           </div>
         </div>
@@ -364,11 +379,15 @@
             <div class="chart-stack">
               <div class="chart-box">
                 <h4>Average Diurnal Profile (Actual vs Predicted)</h4>
-                <img src="assets/diurnal_profiles.png" alt="Diurnal Profiles" class="img-preview" data-modal="modal-img">
+                <button class="img-preview-btn" data-modal-target="modal-img" data-img-src="assets/diurnal_profiles.png" data-caption="Mean hourly profile across all 24 hours of the day" aria-label="Enlarge Diurnal Profiles figure">
+                  <img src="assets/diurnal_profiles.png" alt="Diurnal Profiles" class="img-preview" width="800" height="400" loading="lazy">
+                </button>
               </div>
-              <div class="chart-box">
+              <div class="chart-box mt-4">
                 <h4>1:1 Parity Scatter Plot</h4>
-                <img src="assets/parity_scatter.png" alt="Parity Scatter" class="img-preview" data-modal="modal-img">
+                <button class="img-preview-btn" data-modal-target="modal-img" data-img-src="assets/parity_scatter.png" data-caption="Actual vs. Predicted Solar Generation with 1:1 parity line" aria-label="Enlarge Parity Scatter figure">
+                  <img src="assets/parity_scatter.png" alt="Parity Scatter" class="img-preview" width="800" height="400" loading="lazy">
+                </button>
               </div>
             </div>
           </div>
@@ -377,90 +396,93 @@
     </section>
 
     <!-- TAB 4: OPTIMAL ENERGY & LOSSES -->
-    <section id="tab-optimization" class="tab-pane">
-      <div class="grid-two-col">
+    <section id="tab-optimization" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-optimization">
+      <h2>Optimal Energy & Losses</h2>
+      <div class="grid-two-col mt-4">
         <div class="card">
           <div class="card-header">
-            <h3>Optimal Panel Tilt Angle Search</h3>
+            <h3>Panel Tilt Angle Optimization</h3>
             <span class="chip">Hay-Davies POA Model</span>
           </div>
           <div class="card-body">
             <p class="prose">
-              Using the Hay-Davies transposition model, total annual Plane-of-Array (POA) irradiation was simulated from 0° to 60° facing True North for latitude -37.72° S.
+              Using the Hay-Davies transposition model, total Plane-of-Array (POA) irradiation was simulated from 0° to 60° facing True North for latitude -37.72° S over the evaluation window.
             </p>
             <div class="stat-highlight-box">
               <div class="stat-mini">
-                <span class="stat-lbl">Mathematically Optimal Tilt</span>
-                <span class="stat-val gold">20° North</span>
+                <span class="stat-lbl">Optimal Tilt Angle</span>
+                <span class="stat-val gold">20° True North</span>
               </div>
               <div class="stat-mini">
-                <span class="stat-lbl">Optimal Annual Yield</span>
+                <span class="stat-lbl">Test-Window POA Yield</span>
                 <span class="stat-val">784.0 kWh/m²</span>
               </div>
               <div class="stat-mini">
-                <span class="stat-lbl">Horizontal Yield (Flat)</span>
+                <span class="stat-lbl">Horizontal Yield (0° Flat)</span>
                 <span class="stat-val">755.3 kWh/m²</span>
               </div>
               <div class="stat-mini">
-                <span class="stat-lbl">Annual Energy Gain</span>
+                <span class="stat-lbl">Test-window irradiation gain</span>
                 <span class="stat-val green">+3.81%</span>
               </div>
             </div>
 
             <div class="chart-embed">
               <h4>Tilt Angle vs. Cumulative Solar Yield</h4>
-              <img src="assets/optimal_tilt_curve.png" alt="Optimal Tilt Curve" class="img-preview" data-modal="modal-img">
+              <button class="img-preview-btn" data-modal-target="modal-img" data-img-src="assets/optimal_tilt_curve.png" data-caption="Simulated Solar Yield vs. Surface Tilt Angle (0° to 60° True North)" aria-label="Enlarge Optimal Tilt Curve figure">
+                <img src="assets/optimal_tilt_curve.png" alt="Optimal Tilt Curve" class="img-preview" width="800" height="400" loading="lazy">
+              </button>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <h3>Performance Ratio & Loss Breakdown</h3>
-            <span class="chip">System Degradation Diagnostics</span>
+            <h3>Clear-Sky Yield Ratio & Loss Breakdown</h3>
+            <span class="chip">Site 14 Test Evaluation</span>
           </div>
           <div class="card-body">
             <div class="pr-gauge-container">
               <div class="pr-stat-circle">
                 <span class="pr-val">56.8%</span>
-                <span class="pr-lbl">Overall PR</span>
+                <span class="pr-lbl">Ratio</span>
               </div>
               <div class="pr-desc">
-                <strong>System Performance Ratio (PR)</strong>
-                <p>Ratio of measured AC energy delivered to the grid versus theoretical standard test condition (STC) clear-sky rating.</p>
+                <strong>Clear-Sky Yield Ratio</strong>
+                <p>Ratio of measured AC energy delivered to the grid versus theoretical clear-sky STC rating. Reflects combined atmospheric cloud attenuation, module thermal derating, and inverter limits.</p>
               </div>
             </div>
 
-            <h4 class="mt-4">Thermodynamic Loss Attribution</h4>
+            <h4 class="mt-4">Thermodynamic Loss Attribution (Dec 2021–Apr 2022)</h4>
             <div class="loss-bars">
               <div class="loss-row">
                 <div class="loss-info">
                   <span>Cloud & Atmospheric Attenuation</span>
-                  <strong>17,144.8 kWh</strong>
+                  <strong>17,144.8 kWh <span class="text-muted">(86.0% share of total losses)</span></strong>
                 </div>
-                <div class="bar-track"><div class="bar-fill blue" style="width: 86%;"></div></div>
+                <div class="bar-track"><div class="bar-fill blue" style="width: 86.0%;"></div></div>
               </div>
 
               <div class="loss-row">
                 <div class="loss-info">
                   <span>PV Cell Thermal Derating (>25°C)</span>
-                  <strong>1,967.5 kWh</strong>
+                  <strong>1,967.5 kWh <span class="text-muted">(9.9% share of total losses)</span></strong>
                 </div>
-                <div class="bar-track"><div class="bar-fill orange" style="width: 10%;"></div></div>
+                <div class="bar-track"><div class="bar-fill orange" style="width: 9.9%;"></div></div>
               </div>
 
               <div class="loss-row">
                 <div class="loss-info">
                   <span>Inverter AC Clipping (>55.2 kW)</span>
-                  <strong>823.1 kWh</strong>
+                  <strong>823.1 kWh <span class="text-muted">(4.1% share of total losses)</span></strong>
                 </div>
-                <div class="bar-track"><div class="bar-fill red" style="width: 4%;"></div></div>
+                <div class="bar-track"><div class="bar-fill red" style="width: 4.1%;"></div></div>
               </div>
             </div>
 
             <div class="callout-note mt-4">
-              <strong>Engineering Insight:</strong>
-              Inverter clipping occurs during midday summer peaks when DC array potential exceeds the 55.2 kW inverter AC ceiling. Adding a co-located battery allows storing this clipped energy before it is lost!
+              <strong>Engineering Loss Diagnostic:</strong>
+              Inverter clipping occurs during midday summer peaks when DC array potential exceeds the 55.2 kW AC ceiling. A co-located battery allows storing this clipped energy during surplus intervals.
             </div>
           </div>
         </div>
@@ -468,11 +490,12 @@
     </section>
 
     <!-- TAB 5: PREDICTIVE BATTERY DISPATCH -->
-    <section id="tab-dispatch" class="tab-pane">
-      <div class="card full-width">
+    <section id="tab-dispatch" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-dispatch">
+      <h2>Predictive Battery Dispatch</h2>
+      <div class="card full-width mt-4">
         <div class="card-header">
-          <h3>24-Hour Predictive Storage Dispatch & Peak Shaving</h3>
-          <span class="chip">Optimal Threshold Algorithm</span>
+          <h3>Illustrative Storage Dispatch & Peak Shaving</h3>
+          <span class="chip">Evaluated on Sample Multi-Day Horizon with Assumed Load</span>
         </div>
         <div class="card-body">
           <div class="grid-summary-stats">
@@ -490,127 +513,325 @@
             </div>
             <div class="summary-pill">
               <span class="pill-title">Battery Specification</span>
-              <strong class="pill-number">100 kWh · 40 kW C-Rate</strong>
+              <strong class="pill-number">100 kWh · 40 kW max power</strong>
             </div>
           </div>
 
           <div class="chart-embed-large">
-            <h4>Predictive Power Flow & State-of-Charge Schedule</h4>
-            <img src="assets/battery_dispatch.png" alt="Battery Dispatch Chart" class="img-preview" data-modal="modal-img">
+            <h4>Illustrative Power Flow & Battery State-of-Charge Schedule (48h Window)</h4>
+            <button class="img-preview-btn" data-modal-target="modal-img" data-img-src="assets/battery_dispatch.png" data-caption="48-Hour Predictive Battery Dispatch and Peak Demand Shaving Simulation" aria-label="Enlarge Battery Dispatch figure">
+              <img src="assets/battery_dispatch.png" alt="Battery Dispatch Chart" class="img-preview" width="1000" height="500" loading="lazy">
+            </button>
           </div>
 
           <div class="dispatch-explanation mt-4">
-            <h4>How Predictive Dispatch Works:</h4>
+            <h4>How Predictive Dispatch Works in <code>optimizer.py</code>:</h4>
             <ol class="ordered-steps">
-              <li><strong>Pass 1 (Solar Capture):</strong> During daytime hours (10:00 – 15:00), generation exceeding building load directly charges the battery up to its 95% SoC buffer.</li>
-              <li><strong>Pass 2 (Binary Search Peak Shaving):</strong> Using the 24-hour forecasted generation curve, the optimizer calculates the exact flat threshold power to flatten the evening demand peak (17:00 – 21:00), completely eliminating grid demand spikes.</li>
+              <li><strong>Pass 1 (Solar Capture):</strong> Whenever forecasted solar generation exceeds campus load ($P_{\text{solar}} > P_{\text{load}}$), surplus power charges the battery up to the 95% maximum state-of-charge buffer.</li>
+              <li><strong>Pass 2 (Binary Search Peak Shaving):</strong> Using the forecasted generation curve, a binary search finds the optimal flat threshold to discharge stored solar during demand peaks, which <strong>reduces peak demand by 24.1%</strong>.</li>
             </ol>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TAB 6: INTERACTIVE PV SIMULATOR -->
-    <section id="tab-simulator" class="tab-pane">
-      <div class="grid-two-col">
+    <!-- TAB 6: DATA EXPLORER (DATABASE QUERY & TABLE) -->
+    <section id="tab-explorer" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-explorer">
+      <h2>Data Explorer · Test Split Telemetry</h2>
+      <div class="card full-width mt-4">
+        <div class="card-header">
+          <h3>Hourly Measurements & Forecasts (Site 14)</h3>
+          <span class="chip">Querying Harmonized Database</span>
+        </div>
+        <div class="card-body">
+          <div class="explorer-controls">
+            <div class="explorer-filter-group">
+              <label for="explorer-date-filter">Filter by Date:</label>
+              <select id="explorer-date-filter" class="site-select">
+                <option value="all">All Available Sample Days (Jan 10–24, 2022)</option>
+                <option value="2022-01-15" selected>2022-01-15 (Peak Summer Sunny Day)</option>
+                <option value="2022-01-16">2022-01-16 (Overcast / Intermittent Day)</option>
+                <option value="2022-01-17">2022-01-17 (High Temperature Day)</option>
+                <option value="2022-01-18">2022-01-18 (Clear Day)</option>
+              </select>
+            </div>
+            <div class="explorer-filter-group">
+              <label for="explorer-daylight-only">
+                <input type="checkbox" id="explorer-daylight-only" checked> Daylight Hours Only
+              </label>
+            </div>
+          </div>
+
+          <!-- Explorer Daily Summary KPI Row -->
+          <div class="grid-summary-stats mt-3" id="explorer-kpi-row">
+            <div class="summary-pill">
+              <span class="pill-title">Daily Actual Generation</span>
+              <strong class="pill-number gold" id="exp-total-actual">—</strong>
+            </div>
+            <div class="summary-pill">
+              <span class="pill-title">Daily Forecast Generation</span>
+              <strong class="pill-number blue" id="exp-total-forecast">—</strong>
+            </div>
+            <div class="summary-pill">
+              <span class="pill-title">Peak Generation (Hour Max)</span>
+              <strong class="pill-number green" id="exp-peak-gen">—</strong>
+            </div>
+            <div class="summary-pill">
+              <span class="pill-title">Mean Absolute Error</span>
+              <strong class="pill-number" id="exp-mean-error">—</strong>
+            </div>
+          </div>
+
+          <!-- Mini SVG Comparison Chart -->
+          <div class="explorer-chart-container mt-4">
+            <h4>Actual vs. Forecast Hourly Generation Profile</h4>
+            <div id="explorer-mini-chart" class="mini-chart-svg-wrapper">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Interactive Table -->
+          <div class="table-responsive mt-4">
+            <table class="data-table" id="explorer-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Actual (kWh)</th>
+                  <th>Forecast (kWh)</th>
+                  <th>Abs Error (kWh)</th>
+                  <th>GHI (W/m²)</th>
+                  <th>Clear-Sky GHI</th>
+                  <th>Air Temp (°C)</th>
+                  <th>Cloud Opacity (%)</th>
+                </tr>
+              </thead>
+              <tbody id="explorer-tbody">
+                <tr><td colspan="8" class="text-center">Loading database telemetry...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: DATABASE SCHEMA & ARCHITECTURE -->
+    <section id="tab-schema" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-schema">
+      <h2>UniSolar Database Schema</h2>
+      <div class="card full-width mt-4">
+        <div class="card-header">
+          <h3>Relational Architecture & Entity Relationships</h3>
+          <span class="chip">5 Relational Tables · 3.2M+ Records</span>
+        </div>
+        <div class="card-body">
+          <p class="prose mb-4">
+            The UniSolar dataset stores campus geographical locations, 15-minute meteorological variables, hourly satellite-derived irradiance records, and inverter generation telemetry across 42 sites.
+          </p>
+
+          <div class="schema-grid">
+            <div class="schema-table-card">
+              <div class="schema-table-header">
+                <strong>Solar_Site_Details</strong>
+                <span class="badge-mini">43 rows</span>
+              </div>
+              <ul class="schema-col-list">
+                <li><span class="pk-badge">PK</span> <strong>SiteKey</strong> (INTEGER)</li>
+                <li><span class="fk-badge">FK</span> CampusKey (INTEGER)</li>
+                <li>kWp (FLOAT)</li>
+                <li>Number of panels (FLOAT)</li>
+                <li>Panel (VARCHAR)</li>
+                <li>Inverter (VARCHAR)</li>
+                <li>Optimizers (VARCHAR)</li>
+                <li>lat, Lon (FLOAT)</li>
+              </ul>
+              <p class="schema-note">Static array hardware specifications and coordinates.</p>
+            </div>
+
+            <div class="schema-table-card">
+              <div class="schema-table-header">
+                <strong>Weather_Data_reordered_all</strong>
+                <span class="badge-mini">371,769 rows</span>
+              </div>
+              <ul class="schema-col-list">
+                <li><span class="pk-badge">PK</span> <strong>(CampusKey, Timestamp)</strong></li>
+                <li><span class="fk-badge">FK</span> CampusKey (INTEGER)</li>
+                <li>Timestamp (DATETIME · Local AEST/AEDT)</li>
+                <li>AirTemperature (°C)</li>
+                <li>ApparentTemperature (°C)</li>
+                <li>DewPointTemperature (°C)</li>
+                <li>RelativeHumidity (%)</li>
+                <li>WindSpeed (m/s), WindDirection (°)</li>
+              </ul>
+              <p class="schema-note">15-minute ground station meteorological telemetry.</p>
+            </div>
+
+            <div class="schema-table-card">
+              <div class="schema-table-header">
+                <strong>Solar_Irradiance</strong>
+                <span class="badge-mini">102,360 rows</span>
+              </div>
+              <ul class="schema-col-list">
+                <li><span class="pk-badge">PK</span> <strong>(Campus, Timestamp_UTC)</strong></li>
+                <li><span class="fk-badge">FK</span> Campus (VARCHAR)</li>
+                <li>Timestamp_UTC (DATETIME · UTC)</li>
+                <li>Ghi (INTEGER · W/m²)</li>
+                <li>CloudOpacity (FLOAT · %)</li>
+              </ul>
+              <p class="schema-note">Hourly solar radiation records converted to local time in pipeline.</p>
+            </div>
+
+            <div class="schema-table-card">
+              <div class="schema-table-header">
+                <strong>Solar_Energy_Generation</strong>
+                <span class="badge-mini">2,731,946 rows</span>
+              </div>
+              <ul class="schema-col-list">
+                <li><span class="pk-badge">PK</span> <strong>(SiteKey, Timestamp)</strong></li>
+                <li><span class="fk-badge">FK</span> SiteKey (INTEGER)</li>
+                <li><span class="fk-badge">FK</span> CampusKey (INTEGER)</li>
+                <li>Timestamp (DATETIME · Local)</li>
+                <li>SolarGeneration (FLOAT · kWh per 15-min)</li>
+              </ul>
+              <p class="schema-note">15-minute active electrical energy generation target.</p>
+            </div>
+
+            <div class="schema-table-card">
+              <div class="schema-table-header">
+                <strong>Monthly_Summary_Solar</strong>
+                <span class="badge-mini">1,176 rows</span>
+              </div>
+              <ul class="schema-col-list">
+                <li><span class="pk-badge">PK</span> <strong>(SiteKey, Year, Month)</strong></li>
+                <li><span class="fk-badge">FK</span> SiteKey (INTEGER)</li>
+                <li>Year (INTEGER), Month (VARCHAR)</li>
+                <li>DataStatus (BOOLEAN · Active/Inactive)</li>
+                <li>AverageSolarGeneration (FLOAT)</li>
+                <li>MaxSolarGeneration (FLOAT)</li>
+              </ul>
+              <p class="schema-note">Filters out pre-commissioning months before pipeline training.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 8: INTERACTIVE PHYSICS PV SIMULATOR -->
+    <section id="tab-simulator" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn-simulator">
+      <h2>Physics PV Simulator</h2>
+      <div class="grid-two-col mt-4">
         <div class="card">
           <div class="card-header">
-            <h3>Real-Time Environmental Conditions</h3>
-            <span class="chip">Interactive Parameter Input</span>
+            <h3>Environmental Parameters</h3>
+            <span class="chip">Physics-Based Inputs</span>
           </div>
           <div class="card-body">
-            <div class="control-group">
-              <div class="control-header">
-                <label for="sim-ghi">Global Horizontal Irradiance (GHI)</label>
-                <span id="val-ghi" class="control-val">750 W/m²</span>
-              </div>
-              <input type="range" id="sim-ghi" min="0" max="1100" value="750" step="10">
-              <div class="range-labels"><span>0 (Night)</span><span>500 (Overcast)</span><span>1100 (Peak Summer)</span></div>
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <label for="sim-temp">Ambient Air Temperature</label>
-                <span id="val-temp" class="control-val">28.0 °C</span>
-              </div>
-              <input type="range" id="sim-temp" min="0" max="45" value="28" step="0.5">
-              <div class="range-labels"><span>0 °C (Winter)</span><span>25 °C (STC)</span><span>45 °C (Heatwave)</span></div>
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <label for="sim-wind">Wind Speed</label>
-                <span id="val-wind" class="control-val">3.5 m/s</span>
-              </div>
-              <input type="range" id="sim-wind" min="0" max="25" value="3.5" step="0.5">
-              <div class="range-labels"><span>0 m/s (Calm)</span><span>10 m/s (Breezy)</span><span>25 m/s (Storm)</span></div>
-            </div>
-
-            <div class="control-group">
-              <div class="control-header">
-                <label for="sim-cloud">Cloud Opacity</label>
-                <span id="val-cloud" class="control-val">15 %</span>
-              </div>
-              <input type="range" id="sim-cloud" min="0" max="100" value="15" step="5">
-              <div class="range-labels"><span>0% (Clear)</span><span>50% (Partly Cloudy)</span><span>100% (Dense Clouds)</span></div>
+            <!-- Simulator Array Preset Selector -->
+            <div class="control-group mb-4">
+              <label for="sim-preset-select" class="block font-semibold mb-1">Select Array Preset (Real UniSolar Hardware):</label>
+              <select id="sim-preset-select" class="site-select w-full">
+                <option value="14" selected>Site 14 · Bundoora (66.0 kWp Trina 330W · 55.2 kW SolarEdge)</option>
+                <option value="15">Site 15 · Bundoora (94.2 kWp Trina 310W · 82.8 kW SolarEdge)</option>
+                <option value="18">Site 18 · Bundoora (168.0 kWp Trina 330W · 150 kW SolarEdge)</option>
+                <option value="25">Site 25 · Bundoora (384.1 kWp Trina 330W · 331 kW SolarEdge)</option>
+                <option value="27">Site 27 · Bundoora (539.8 kWp SunPower · 450 kW ABB)</option>
+                <option value="custom">Custom Array Size...</option>
+              </select>
             </div>
 
             <div class="control-group">
               <div class="control-header">
                 <label for="sim-elevation">Solar Elevation Angle</label>
-                <span id="val-elevation" class="control-val">55 °</span>
+                <span id="val-elevation" class="control-val">—</span>
               </div>
-              <input type="range" id="sim-elevation" min="-10" max="90" value="55" step="1">
-              <div class="range-labels"><span>-10° (Night)</span><span>30° (Morning)</span><span>90° (Zenith)</span></div>
+              <input type="range" id="sim-elevation" min="-10" max="90" value="55" step="1" aria-valuemin="-10" aria-valuemax="90" aria-valuenow="55">
+              <div class="range-labels"><span>-10° (Night)</span><span>30° (Morning/Late Afternoon)</span><span>90° (Zenith Noon)</span></div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="sim-cloud">Cloud Opacity (Drives Irradiance)</label>
+                <span id="val-cloud" class="control-val">—</span>
+              </div>
+              <input type="range" id="sim-cloud" min="0" max="100" value="15" step="5" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15">
+              <div class="range-labels"><span>0% (Clear Sky)</span><span>50% (Partly Cloudy)</span><span>100% (Dense Overcast)</span></div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="sim-temp">Ambient Air Temperature</label>
+                <span id="val-temp" class="control-val">—</span>
+              </div>
+              <input type="range" id="sim-temp" min="0" max="45" value="28" step="0.5" aria-valuemin="0" aria-valuemax="45" aria-valuenow="28">
+              <div class="range-labels"><span>0 °C (Winter)</span><span>25 °C (STC Reference)</span><span>45 °C (Heatwave)</span></div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="sim-wind">Wind Speed</label>
+                <span id="val-wind" class="control-val">—</span>
+              </div>
+              <input type="range" id="sim-wind" min="0" max="25" value="3.5" step="0.5" aria-valuemin="0" aria-valuemax="25" aria-valuenow="3.5">
+              <div class="range-labels"><span>0 m/s (Calm Heat)</span><span>10 m/s (Breezy Cooling)</span><span>25 m/s (High Wind)</span></div>
+            </div>
+
+            <!-- Derived GHI Display (Read-Only) -->
+            <div class="derived-ghi-box mt-3">
+              <span class="derived-lbl">Computed Global Horizontal Irradiance (GHI):</span>
+              <strong class="derived-val" id="val-derived-ghi">—</strong>
+              <span class="derived-sub">Derived via Ineichen clear-sky envelope & Kasten-Czeplak cloud attenuation</span>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <h3>Calculated Physics & Forecast Output</h3>
-            <span class="chip">Live Model Engine</span>
+            <h3>Physics-Based Estimate (Not the Trained Model)</h3>
+            <span class="chip">Thermodynamic & BOS Conversion</span>
           </div>
           <div class="card-body">
             <div class="sim-result-box">
-              <span class="sim-result-lbl">Predicted Hourly Solar Output</span>
+              <span class="sim-result-lbl">Estimated AC Power Output</span>
               <div class="sim-result-power">
-                <span id="res-power" class="power-number">43.2</span>
-                <span class="power-unit">kWh / hour</span>
+                <span id="res-power" class="power-number">—</span>
+                <span class="power-unit">kW AC</span>
               </div>
               <div class="sim-result-bar-wrapper">
-                <div class="sim-result-bar" id="res-power-bar" style="width: 78%;"></div>
+                <div class="sim-result-bar" id="res-power-bar" style="width: 0%;"></div>
               </div>
-              <span class="sim-capacity-tag">Rated Capacity: 66.0 kWp · Inverter AC Ceiling: 55.2 kW</span>
+              <span class="sim-capacity-tag" id="sim-capacity-tag">Rated Capacity: 66.0 kWp · Inverter Ceiling: 55.2 kW AC</span>
             </div>
 
             <div class="sim-physics-breakdown">
               <h4>Thermodynamic State Variables:</h4>
               <div class="breakdown-grid">
                 <div class="b-box">
-                  <span class="b-label">Estimated Cell Temp (T_cell)</span>
-                  <strong class="b-val" id="res-tcell">43.4 °C</strong>
-                  <span class="b-meta" id="res-temp-loss">-6.99% thermal loss</span>
+                  <span class="b-label">Estimated Cell Temp (Faiman)</span>
+                  <strong class="b-val" id="res-tcell">—</strong>
+                  <span class="b-meta" id="res-temp-loss">—</span>
                 </div>
 
                 <div class="b-box">
-                  <span class="b-label">Clear-Sky Maximum</span>
-                  <strong class="b-val" id="res-cs-power">51.8 kW</strong>
-                  <span class="b-meta">Theoretical STC</span>
+                  <span class="b-label">Clear-Sky DC Power</span>
+                  <strong class="b-val" id="res-cs-power">—</strong>
+                  <span class="b-meta">Pre-thermal derating</span>
                 </div>
 
                 <div class="b-box">
                   <span class="b-label">Clear-Sky Index (Kt)</span>
-                  <strong class="b-val" id="res-kt">0.82</strong>
-                  <span class="b-meta" id="res-cloud-impact">Light atmospheric filtering</span>
+                  <strong class="b-val" id="res-kt">—</strong>
+                  <span class="b-meta" id="res-cloud-impact">—</span>
                 </div>
 
                 <div class="b-box">
                   <span class="b-label">Operating Status</span>
-                  <strong class="b-val" id="res-status">Active Generating</strong>
-                  <span class="b-meta" id="res-status-meta">Normal DC-to-AC conversion</span>
+                  <strong class="b-val" id="res-status">—</strong>
+                  <span class="b-meta" id="res-status-meta">—</span>
                 </div>
               </div>
+            </div>
+
+            <div class="callout-note mt-3">
+              <strong>Efficiency Note:</strong>
+              This simulator applies the Faiman PV cell heat equation, silicon temperature derating ($-0.38\%/^\circ\text{C}$), inverter AC ceiling clipping, and an assumed $\sim 86\%$ balance-of-system (BOS) conversion efficiency. For trained model predictions, refer to the <strong>Forecasting Benchmarks</strong> tab.
             </div>
           </div>
         </div>
@@ -619,19 +840,19 @@
 
   </main>
 
-  <!-- Modal for High-Resolution Image Lightbox -->
-  <div id="modal-img" class="img-modal">
-    <div class="modal-backdrop"></div>
+  <!-- Modal for Enlarging Figures (Accessible Dialog) -->
+  <div id="modal-img" class="img-modal" role="dialog" aria-modal="true" aria-labelledby="modal-caption" aria-hidden="true">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <img id="modal-target-img" src="" alt="Enlarged visualization">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close enlarged figure">&times;</button>
+      <img id="modal-target-img" src="" alt="Enlarged figure view" width="1000" height="600">
       <p id="modal-caption" class="modal-caption"></p>
     </div>
   </div>
 
   <footer class="app-footer">
     <div class="footer-container">
-      <p>Helios Solar System · Built for UniSolar Research Project (La Trobe University, Victoria)</p>
+      <p>Helios Solar System · UniSolar Research Project (La Trobe University, Victoria, Australia)</p>
       <p class="footer-meta">Python pvlib · XGBoost · PyTorch Bi-GRU · Hay-Davies Transposition</p>
     </div>
   </footer>

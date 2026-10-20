@@ -1,0 +1,39 @@
+{
+  "tables": [
+    {
+      "name": "Solar_Site_Details",
+      "pk": "SiteKey",
+      "fk": "CampusKey -> Campus Registry",
+      "rows": 43,
+      "description": "Static panel, inverter, optimizer configurations and GPS coordinates for 42 operational PV arrays across 5 university campuses."
+    },
+    {
+      "name": "Weather_Data_reordered_all",
+      "pk": "(CampusKey, Timestamp)",
+      "fk": "CampusKey -> Solar_Site_Details.CampusKey",
+      "rows": 371769,
+      "description": "15-minute ambient meteorological telemetry (Air Temperature, Apparent Temp, Dew Point, Relative Humidity, Wind Speed, Wind Direction)."
+    },
+    {
+      "name": "Solar_Irradiance",
+      "pk": "(Campus, Timestamp_UTC)",
+      "fk": "Campus -> Campus Registry",
+      "rows": 102360,
+      "description": "Hourly satellite-derived Global Horizontal Irradiance (GHI, W/m\u00b2) and Cloud Opacity (%) logged in UTC."
+    },
+    {
+      "name": "Solar_Energy_Generation",
+      "pk": "(SiteKey, Timestamp)",
+      "fk": "SiteKey -> Solar_Site_Details.SiteKey",
+      "rows": 2731946,
+      "description": "15-minute active electrical power generation (kWh) recorded from inverter data loggers across all 42 arrays."
+    },
+    {
+      "name": "Monthly_Summary_Solar",
+      "pk": "(SiteKey, Year, Month)",
+      "fk": "SiteKey -> Solar_Site_Details.SiteKey",
+      "rows": 1176,
+      "description": "Monthly operational commissioning tracking (DataStatus: True/False, Average/Max/Min generation benchmarks)."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "evaluated_site": 14,
+  "site_description": "Bundoora Main Campus (66.0 kWp Trina 330W, 2x SolarEdge SE27.6K)",
+  "dataset_valid_hours": 16267,
+  "test_hours": 3254,
+  "test_date_range": {
+    "start": "2021-12-09 08:00:00",
+    "end": "2022-04-23 22:00:00"
+  },
+  "weather_forecasting": {
+    "xgboost": {
+      "rmse": 70.6,
+      "mae": 34.2,
+      "r2": 0.948,
+      "skill_score": 60.8
+    },
+    "persistence_24h": {
+      "rmse": 179.9,
+      "mae": 82.5,
+      "r2": 0.662,
+      "skill_score": 0.0
+    }
+  },
+  "generation_forecasting": {
+    "physics_xgboost": {
+      "rmse": 4.69,
+      "mae": 2.08,
+      "nrmse": 7.1,
+      "r2": 0.907,
+      "skill_score": 51.9
+    },
+    "deep_bi_gru": {
+      "rmse": 6.18,
+      "mae": 2.89,
+      "nrmse": 9.36,
+      "r2": 0.838,
+      "skill_score": 36.6
+    },
+    "persistence_24h": {
+      "rmse": 9.74,
+      "mae": 4.81,
+      "nrmse": 14.75,
+      "r2": 0.597,
+      "skill_score": 0.0
+    }
+  },
+  "tilt_optimization": {
+    "optimal_tilt_deg": 20,
+    "orientation": "True North (Azimuth 0\u00b0)",
+    "max_poa_kwh_m2": 784.0,
+    "flat_poa_kwh_m2": 755.3,
+    "test_window_gain_pct": 3.81
+  },
+  "loss_breakdown": {
+    "clear_sky_yield_ratio_pct": 56.8,
+    "total_actual_kwh": 38245.2,
+    "losses": {
+      "cloud_attenuation_kwh": 17144.8,
+      "cloud_share_pct": 86.0,
+      "thermal_derating_kwh": 1967.5,
+      "thermal_share_pct": 9.87,
+      "inverter_clipping_kwh": 823.1,
+      "clipping_share_pct": 4.13
+    }
+  },
+  "battery_dispatch": {
+    "simulation_scope": "Illustrative 48-hour simulation with assumed commercial campus load",
+    "battery_specs": {
+      "capacity_kwh": 100.0,
+      "max_power_kw": 40.0,
+      "efficiency_pct": 90.0
+    },
+    "peak_demand_shaved_kw": 8.5,
+    "peak_demand_reduction_pct": 24.1,
+    "grid_import_reduction_pct": 6.3,
+    "clean_solar_dispatched_kwh": 69.7
+  }
+}
