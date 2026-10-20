@@ -131,18 +131,21 @@ Where $\gamma = -0.0038\,\text{K}^{-1}$ ($-0.38\% / ^\circ\text{C}$) is the powe
 
 ## 4. Feature Engineering & Chronological Split
 
-### 4.1 Feature Set Construction
+4.1 Feature Set Construction
 
-1. **Cyclical Calendar Features**:
+1. **Cyclical Calendar Features:**
    $$\text{hour\_sin} = \sin\left(\frac{2\pi \cdot h}{24}\right), \quad \text{hour\_cos} = \cos\left(\frac{2\pi \cdot h}{24}\right)$$
+
    $$\text{doy\_sin} = \sin\left(\frac{2\pi \cdot \text{doy}}{365.25}\right), \quad \text{doy\_cos} = \cos\left(\frac{2\pi \cdot \text{doy}}{365.25}\right)$$
-2. **Autoregressive Lag Features**:
+
+2. **Autoregressive Lag Features:**
    - $\text{GHI}_{t-1}, \text{GHI}_{t-2}, \text{GHI}_{t-24}$
-   - $k_{t, t-1}, k_{t, t-2}, k_{t, t-24}$
+   - $k_{t-1}, k_{t-2}, k_{t-24}$
    - $\text{CloudOpacity}_{t-1}, \text{CloudOpacity}_{t-2}, \text{CloudOpacity}_{t-24}$
    - $T_{\text{air}, t-1}, T_{\text{air}, t-24}, \text{Humidity}_{t-1}, \text{WindSpeed}_{t-1}$
    - $\text{energy}_{t-1}, \text{energy}_{t-2}, \text{energy}_{t-24}$
-3. **Rolling Window Statistics**:
+
+3. **Rolling Window Statistics:**
    - 3-hour rolling mean and standard deviation of GHI (`ghi_rolling_mean_3h`, `ghi_rolling_std_3h`).
    - 3-hour and 6-hour rolling mean of Cloud Opacity.
    - 3-hour rolling mean of Clear-Sky Index $k_t$.
